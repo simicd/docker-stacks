@@ -24,4 +24,4 @@ jupyter-nbextension enable toc2/main --user
 # Add custom styling for Jupyter notebook - create folder, change to that folder and download custom.css from GitHub gist
 mkdir $env:USERPROFILE/.jupyter/custom
 cd $env:USERPROFILE/.jupyter/custom
-wget https://gist.githubusercontent.com/simicd/20d40cae61305aecdf372c4ac0cffc4a/raw/082096fe90fd58095f84aab9030fa8a643713ec3/custom.css -OutFile custom.css
+Invoke-WebRequest -Uri https://gist.githubusercontent.com/simicd/20d40cae61305aecdf372c4ac0cffc4a/raw/082096fe90fd58095f84aab9030fa8a643713ec3/custom.css -OutFile "custom.css"
