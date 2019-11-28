@@ -25,3 +25,11 @@ jupyter-nbextension enable toc2/main --user
 mkdir $env:USERPROFILE/.jupyter/custom
 cd $env:USERPROFILE/.jupyter/custom
 Invoke-WebRequest -Uri https://gist.githubusercontent.com/simicd/20d40cae61305aecdf372c4ac0cffc4a/raw/082096fe90fd58095f84aab9030fa8a643713ec3/custom.css -OutFile "custom.css"
+
+# Add VS Code settings file
+mkdir $env:USERPROFILE/AppData/Roaming/Code/User
+cd $env:USERPROFILE/AppData/Roaming/Code/User
+Invoke-WebRequest -Uri https://gist.githubusercontent.com/simicd/7bb64dad99699451264b983e6a671eac/raw/3f3df9e9cf7aa9a30cd2bc41dc4450159a01e91f/settings.json -OutFile "settings.json"
+
+# Change back to user folder
+cd $env:USERPROFILE
