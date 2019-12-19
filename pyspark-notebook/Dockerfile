@@ -72,7 +72,7 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsof
     sudo apt-get update && \
     sudo apt-get install apt-transport-https && \
     sudo apt-get update && \
-    sudo apt-get install -y dotnet-sdk-3.0 && \
+    sudo apt-get install -y dotnet-sdk-3.1 && \
     sudo apt-get install -y powershell && \
     rm packages-microsoft-prod.deb && \
     apt-get clean
