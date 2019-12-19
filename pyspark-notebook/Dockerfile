@@ -58,6 +58,7 @@ ENV PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.9-src.zip \
 ENV USERPROFILE /home/$NB_USER
 
 
+
 ### Set the working directory to /powershell
 WORKDIR /powershell
 
@@ -82,6 +83,10 @@ RUN sudo add-apt-repository ppa:git-core/ppa -y && \
     sudo apt-get update && \
     sudo apt-get install git -y
 
+# Copy the Spark configuration file to the conf folder where Spark is installed
+# This includes for instance additional packages such as Delta Lake which will
+# be included in each SparkSession
+COPY spark-defaults.conf $SPARK_HOME/conf/
 
 # Switch from root/superuser to normal user and change directory
 WORKDIR /home/$NB_USER
