@@ -88,6 +88,7 @@ RUN sudo add-apt-repository ppa:git-core/ppa -y && \
 # be included in each SparkSession
 COPY spark-defaults.conf $SPARK_HOME/conf/
 
+
 # Switch from root/superuser to normal user and change directory
 WORKDIR /home/$NB_USER
 USER $NB_UID
@@ -98,11 +99,16 @@ RUN conda install --quiet -y 'pyarrow' && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
+# Create the folder /repos which will be linked to a data volume with the current user
+# It's possible to mount a data volume without creating the folder here first
+# but then access is given to 'root' user only
+RUN mkdir /home/$NB_USER/repos
+
 # Get the PowerShell script and execute
 # This installs Jupyter extensions, additional Pyton packages and applies Jupyter styling
 COPY workplace-setup.ps1 /tmp/
 RUN pwsh -c "/tmp/workplace-setup.ps1"
 
-# Give permissions to the user
+# Give permissions to the user for all files & folders under /home/username
 RUN fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
