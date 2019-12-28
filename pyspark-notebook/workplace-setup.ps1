@@ -1,14 +1,15 @@
 # Install additional Python packages
-pip install pyarrow --upgrade
-pip install koalas --upgrade
-pip install streamlit --upgrade
-pip install pytest-cov --upgrade
-pip install sphinx --upgrade
-pip install requests-kerberos --upgrade
-pip install yapf --upgrade
+pip install pyarrow==0.15.1
+pip install koalas==0.24.0
+pip install pandas==0.25.3
+pip install streamlit==0.52.2
+pip install pytest-cov==2.8.1
+pip install sphinx==2.3.1
+pip install requests-kerberos==0.12.0
+pip install yapf==0.29.0
 
 # Install and activate Jupyter extensions
-pip install jupyter_contrib_nbextensions
+pip install jupyter_contrib_nbextensions==0.5.1
 jupyter contrib nbextension install --user
 jupyter nbextensions_configurator enable --user
 pip install RISE
