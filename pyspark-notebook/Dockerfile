@@ -86,7 +86,10 @@ RUN sudo add-apt-repository ppa:git-core/ppa -y && \
 # Copy the Spark configuration file to the conf folder where Spark is installed
 # This includes for instance additional packages such as Delta Lake which will
 # be included in each SparkSession
+# Additionally, copy the logger settings in log4j.properties
+# (set log level to WARN messages and higher instead of INFO)
 COPY spark-defaults.conf $SPARK_HOME/conf/
+COPY log4j.properties $SPARK_HOME/conf/
 
 
 # Switch from root/superuser to normal user and change directory
