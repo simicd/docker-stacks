@@ -1,12 +1,17 @@
 # Install additional Python packages
 pip install pyarrow==0.15.1
-pip install koalas==0.24.0
+pip install koalas==0.25.0
 pip install pandas==0.25.3
 pip install streamlit==0.52.2
 pip install pytest-cov==2.8.1
 pip install sphinx==2.3.1
+pip install sphinx-autodoc-typehints==1.10.3
+pip install sphinx_rtd_theme==0.4.3
 pip install requests-kerberos==0.12.0
 pip install yapf==0.29.0
+pip install pydot==1.4.1
+pip install graphviz==0.13.2
+pip install cookiecutter=1.7.0
 
 # Install and activate Jupyter extensions
 pip install jupyter_contrib_nbextensions==0.5.1
