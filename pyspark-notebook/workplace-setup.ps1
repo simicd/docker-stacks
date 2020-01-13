@@ -11,7 +11,7 @@ pip install requests-kerberos==0.12.0
 pip install yapf==0.29.0
 pip install pydot==1.4.1
 pip install graphviz==0.13.2
-pip install cookiecutter=1.7.0
+pip install cookiecutter==1.7.0
 
 # Install and activate Jupyter extensions
 pip install jupyter_contrib_nbextensions==0.5.1
@@ -30,7 +30,7 @@ jupyter-nbextension enable toc2/main --user
 # Add custom styling for Jupyter notebook - create folder, change to that folder and download custom.css from GitHub gist
 mkdir $env:USERPROFILE/.jupyter/custom
 cd $env:USERPROFILE/.jupyter/custom
-Invoke-WebRequest -Uri https://gist.githubusercontent.com/simicd/20d40cae61305aecdf372c4ac0cffc4a/raw/082096fe90fd58095f84aab9030fa8a643713ec3/custom.css -OutFile "custom.css"
+Invoke-WebRequest -Uri https://gist.githubusercontent.com/simicd/20d40cae61305aecdf372c4ac0cffc4a/raw/9e0c167ccf86fc3c66644a90da5c6ad80a6bb4f2/custom.css -OutFile "custom.css"
 
 # Add VS Code settings file
 mkdir $env:USERPROFILE/AppData/Roaming/Code/User
