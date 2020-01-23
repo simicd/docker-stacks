@@ -1,8 +1,8 @@
 # Install additional Python packages
 pip install pyarrow==0.15.1
-pip install koalas==0.25.0
+pip install koalas==0.26.0
 pip install pandas==0.25.3
-pip install streamlit==0.52.2
+pip install streamlit==0.53.0
 pip install pytest-cov==2.8.1
 pip install sphinx==2.3.1
 pip install sphinx-autodoc-typehints==1.10.3
@@ -17,7 +17,7 @@ pip install cookiecutter==1.7.0
 pip install jupyter_contrib_nbextensions==0.5.1
 jupyter contrib nbextension install --user
 jupyter nbextensions_configurator enable --user
-pip install RISE
+pip install RISE==5.6.0
 jupyter-nbextension enable rise --py --user
 jupyter-nbextension enable collapsible_headings/main --user
 jupyter-nbextension enable scratchpad/main --user
@@ -35,7 +35,7 @@ Invoke-WebRequest -Uri https://gist.githubusercontent.com/simicd/20d40cae61305ae
 # Add VS Code settings file
 mkdir $env:USERPROFILE/AppData/Roaming/Code/User
 cd $env:USERPROFILE/AppData/Roaming/Code/User
-Invoke-WebRequest -Uri https://gist.githubusercontent.com/simicd/7bb64dad99699451264b983e6a671eac/raw/3f3df9e9cf7aa9a30cd2bc41dc4450159a01e91f/settings.json -OutFile "settings.json"
+Invoke-WebRequest -Uri https://gist.githubusercontent.com/simicd/7bb64dad99699451264b983e6a671eac/raw/2e3db5ecd9a53257972d233a6ab5e544c8b44db3/settings.json -OutFile "settings.json"
 
 # Change back to user folder
 cd $env:USERPROFILE
