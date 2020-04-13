@@ -1,10 +1,10 @@
 # Install additional Python packages
-pip install pyarrow==0.15.1
-pip install koalas==0.26.0
+pip install pyarrow==0.16.0
+pip install koalas==0.31.0
 pip install pandas==0.25.3
-pip install streamlit==0.53.0
+pip install streamlit==0.57.3
 pip install pytest-cov==2.8.1
-pip install sphinx==2.3.1
+pip install sphinx==3.0.1
 pip install sphinx-autodoc-typehints==1.10.3
 pip install sphinx_rtd_theme==0.4.3
 pip install requests-kerberos==0.12.0
@@ -17,7 +17,7 @@ pip install cookiecutter==1.7.0
 pip install jupyter_contrib_nbextensions==0.5.1
 jupyter contrib nbextension install --user
 jupyter nbextensions_configurator enable --user
-pip install RISE==5.6.0
+pip install rise==5.6.1
 jupyter-nbextension enable rise --py --user
 jupyter-nbextension enable collapsible_headings/main --user
 jupyter-nbextension enable scratchpad/main --user

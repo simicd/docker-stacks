@@ -63,7 +63,7 @@ ENV USERPROFILE /home/$NB_USER
 WORKDIR /powershell
 
 # Install .NET Core 3.0 and PowerShell
-# Source: https://dotnet.microsoft.com/download/linux-package-manager/ubuntu18-04/sdk-3.0.100
+# Source: https://docs.microsoft.com/en-us/dotnet/core/install/linux-package-manager-ubuntu-1804
 RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
     sudo dpkg -i packages-microsoft-prod.deb && \
     sudo apt-get update && \
