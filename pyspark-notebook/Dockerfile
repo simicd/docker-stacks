@@ -78,6 +78,9 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsof
     rm packages-microsoft-prod.deb && \
     apt-get clean
 
+# Install Azure Functions Core Tools
+RUN npm install -g azure-functions-core-tools@3 --unsafe-perm true
+
 # Upgrade git to newest version (requires changing repository source to git-core)
 RUN sudo add-apt-repository ppa:git-core/ppa -y && \
     sudo apt-get update && \
