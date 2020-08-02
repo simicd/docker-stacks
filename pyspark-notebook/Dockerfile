@@ -37,7 +37,7 @@ ENV SPARK_HOME=/usr/local/spark
 ENV PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.9-src.zip \
     SPARK_OPTS="--driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info" \
     PATH=$PATH:$SPARK_HOME/bin \
-    JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+    JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 
 # Mesos dependencies
 # Install from the Xenial Mesosphere repository since there does not (yet)
@@ -55,7 +55,7 @@ ENV PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.9-src.zip \
 # ENV MESOS_NATIVE_LIBRARY /usr/local/lib/libmesos.so
 
 # Define USERPROFILE environment variable to match Windows so that PowerShell script can successfully run
-ENV USERPROFILE /home/$NB_USER
+ENV USERPROFILE=/home/$NB_USER
 
 
 
@@ -64,7 +64,7 @@ WORKDIR /powershell
 
 # Install .NET Core 3.0 and PowerShell
 # Source: https://docs.microsoft.com/en-us/dotnet/core/install/linux-package-manager-ubuntu-1804
-RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb  && \
     sudo dpkg -i packages-microsoft-prod.deb && \
     sudo apt-get update && \
     sudo apt-get install -y software-properties-common && \
@@ -74,17 +74,21 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsof
     sudo apt-get install apt-transport-https && \
     sudo apt-get update && \
     sudo apt-get install -y dotnet-sdk-3.1 && \
-    sudo apt-get install -y powershell && \
+    # sudo apt-get install -y powershell && \
     rm packages-microsoft-prod.deb && \
     apt-get clean
 
+# Temporary PowerShell workaround for Ubuntu 20.04: https://github.com/PowerShell/PowerShell/issues/12626
+RUN dotnet tool install -g powershell
+ENV PATH=$PATH:~/.dotnet/tools
+
 # Install Azure Functions Core Tools
-RUN npm install -g azure-functions-core-tools@3 --unsafe-perm true
+RUN npm install -g azure-functions-core-tools@3.0.2630 --unsafe-perm true
 
 # Upgrade git to newest version (requires changing repository source to git-core)
 RUN sudo add-apt-repository ppa:git-core/ppa -y && \
     sudo apt-get update && \
-    sudo apt-get install git -y
+    sudo apt-get install git=1:2.28.0-0ppa1~ubuntu20.04.1 -y
 
 # Copy the Spark configuration file to the conf folder where Spark is installed
 # This includes for instance additional packages such as Delta Lake which will
@@ -98,12 +102,6 @@ COPY log4j.properties $SPARK_HOME/conf/
 # Switch from root/superuser to normal user and change directory
 WORKDIR /home/$NB_USER
 USER $NB_UID
-
-# Install pyarrow
-RUN conda install --quiet -y 'pyarrow' && \
-    conda clean --all -f -y && \
-    fix-permissions "${CONDA_DIR}" && \
-    fix-permissions "/home/${NB_USER}"
 
 # Create the folder /repos which will be linked to a data volume with the current user
 # It's possible to mount a data volume without creating the folder here first
